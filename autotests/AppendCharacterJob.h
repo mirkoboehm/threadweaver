@@ -54,7 +54,7 @@ public:
         m_stringref = stringref;
     }
 
-    void run(ThreadWeaver::JobPointer, ThreadWeaver::Thread *)
+    void run(const ThreadWeaver::JobPointer&, ThreadWeaver::Thread *)
     {
         QMutexLocker locker(&s_GlobalMutex);
         m_stringref->append(m_c);
@@ -109,7 +109,7 @@ public:
         TWDEBUG(3, "~BusyJob\n");
     }
 
-    void run(ThreadWeaver::JobPointer, ThreadWeaver::Thread *)
+    void run(const ThreadWeaver::JobPointer&, ThreadWeaver::Thread *)
     {
         using namespace ThreadWeaver;
         TWDEBUG(3, "BusyJob: entered run()\n");

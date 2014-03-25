@@ -101,7 +101,7 @@ protected:
 
     /** Overload run().
      * We have to. */
-    void run(JobPointer self, Thread *thread) Q_DECL_OVERRIDE;
+    void run(const JobPointer& self, Thread *thread) Q_DECL_OVERRIDE;
 
 protected:
     friend class CollectionExecuteWrapper; //needs to access d()

@@ -59,7 +59,7 @@ QMutex *IdDecorator::mutex() const
     return job()->mutex();
 }
 
-void IdDecorator::run(JobPointer self, Thread *thread)
+void IdDecorator::run(const JobPointer& self, Thread *thread)
 {
     Q_ASSERT(d1);
     job()->run(self, thread);

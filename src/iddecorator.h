@@ -86,7 +86,7 @@ public:
     QList<QueuePolicy *> queuePolicies() const Q_DECL_OVERRIDE;
 
 protected:
-    void run(JobPointer self, Thread *thread) Q_DECL_OVERRIDE;
+    void run(const JobPointer& self, Thread *thread) Q_DECL_OVERRIDE;
     void defaultBegin(const JobPointer& job, Thread *thread) Q_DECL_OVERRIDE;
     void defaultEnd(const JobPointer& job, Thread *thread) Q_DECL_OVERRIDE;
 

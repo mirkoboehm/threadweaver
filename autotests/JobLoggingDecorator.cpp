@@ -11,7 +11,7 @@ JobLoggingDecorator::JobLoggingDecorator(const JobPointer &job, JobLoggingDecora
     Q_ASSERT(collector);
 }
 
-void JobLoggingDecorator::run(JobPointer self, Thread *thread)
+void JobLoggingDecorator::run(const JobPointer& self, Thread *thread)
 {
     data_.start = collector_->time();
     if (thread) {

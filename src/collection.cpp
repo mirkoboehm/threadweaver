@@ -150,7 +150,7 @@ void Collection::execute(const JobPointer& job, Thread *thread)
     Job::execute(job, thread);
 }
 
-void Collection::run(JobPointer, Thread *)
+void Collection::run(const JobPointer&, Thread *)
 {
     //empty
 }

@@ -72,7 +72,7 @@ public:
     }
 
 protected:
-    void run(ThreadWeaver::JobPointer, ThreadWeaver::Thread *)
+    void run(const ThreadWeaver::JobPointer&, ThreadWeaver::Thread *)
     {
         payload();
     }

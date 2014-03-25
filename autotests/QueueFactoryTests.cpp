@@ -44,7 +44,7 @@ public:
         , original_(job)
     {}
 
-    void run(JobPointer self, Thread *thread) Q_DECL_OVERRIDE {
+    void run(const JobPointer& self, Thread *thread) Q_DECL_OVERRIDE {
         counter.fetchAndAddRelease(1);
         IdDecorator::run(self, thread);
         counter.fetchAndAddAcquire(1);

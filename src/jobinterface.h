@@ -77,7 +77,7 @@ public:
     virtual void assignQueuePolicy(QueuePolicy *) = 0;
     virtual void removeQueuePolicy(QueuePolicy *) = 0;
     virtual QList<QueuePolicy *> queuePolicies() const = 0;
-    virtual void run(JobPointer self, Thread *thread) = 0;
+    virtual void run(const JobPointer& self, Thread *thread) = 0;
     friend class Executor;
     virtual void defaultBegin(const JobPointer& job, Thread *thread) = 0;
     virtual void defaultEnd(const JobPointer& job, Thread *thread) = 0;
