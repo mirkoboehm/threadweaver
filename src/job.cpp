@@ -185,6 +185,71 @@ QList<QueuePolicy *> Job::queuePolicies() const
     return d()->queuePolicies;
 }
 
+/** @brief Set a status property on the job.
+ *
+ * To implement arbitrary status properties without incurring implemention overhead in the base class,
+ * it is possible to set arbitrary status properties in the form of QVariants on a job. The base class
+ * implementation will ignore them, leaving the actual handling of the status to decorators of the job.
+ * The Job class itself never calls this method.
+ */
+void Job::setStatusProperty(int, const QVariant&)
+{
+    //empty
+}
+
+/** @brief Set the name of the job for status reporting.
+ *
+ * The base class implementation is empty, leaving the actual handling of the name to decorators of the
+ * job. The Job class itself never calls this method.
+ */
+void Job::setName(const QString&)
+{
+    //empty
+}
+
+/** @brief Set the description of the job for status reporting.
+ *
+ * The base class implementation is empty, leaving the actual handling of the description to decorators of the
+ * job. The Job class itself never calls this method.
+ */
+void Job::setDescription(const QString&)
+{
+    //empty
+}
+
+/** @brief Set the progress of the job for status reporting.
+ *
+ * Progress status is made up of three attributes: the current progress value, a total and a weight. Progress
+ * starts counting at zero. A value of zero or less will be represented as zero percent, any value of total or
+ * more as 100 percent.
+ *
+ * The total is an arbitrary number larger than 0. The completion percentage is calculated as value divided by
+ * total.
+ *
+ * Weight is only relevant when completion is calculated across multiple jobs, for example as part of a
+ * sequence. It represents the cost or contribution of the job to the group. A weight value of 1 is the default.
+ * If all jobs of the respective group have a weight value of 1, they all contribute the same progress to the
+ * group. If a job in the group has a weight value of 10, it completion is supposed to have 10 times the impact
+ * on overall progress as for a job with weight 1.
+ *
+ * The base class implementation is empty, leaving the actual handling of the name to decorators of the
+ * job. The Job class itself never calls this method.
+ */
+void Job::setProgress(int, int, int)
+{
+    //empty
+}
+
+/** @brief Retrieve a status property for the job.
+ *
+ * The base class implementation returns an invalid QVariant, since it does not store status properties. It is
+ * up to status handling decorators to implement this method.
+ */
+QVariant Job::statusProperty(int)
+{
+    return QVariant();
+}
+
 Private::Job_Private *Job::d()
 {
     return d_;

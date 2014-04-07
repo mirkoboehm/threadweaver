@@ -89,6 +89,36 @@ QList<QueuePolicy *> IdDecorator::queuePolicies() const
     return job()->queuePolicies();
 }
 
+void IdDecorator::setStatusProperty(int role, const QVariant &value)
+{
+    Q_ASSERT(d1);
+    job()->setStatusProperty(role, value);
+}
+
+void IdDecorator::setName(const QString &name)
+{
+    Q_ASSERT(d1);
+    job()->setName(name);
+}
+
+void IdDecorator::setDescription(const QString &description)
+{
+    Q_ASSERT(d1);
+    job()->setDescription(description);
+}
+
+void IdDecorator::setProgress(int progress, int total, int weight)
+{
+    Q_ASSERT(d1);
+    job()->setProgress(progress, total, weight);
+}
+
+QVariant IdDecorator::statusProperty(int role)
+{
+    Q_ASSERT(d1);
+    return job()->statusProperty(role);
+}
+
 void IdDecorator::assignQueuePolicy(QueuePolicy *policy)
 {
     Q_ASSERT(d1);

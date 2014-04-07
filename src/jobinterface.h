@@ -28,6 +28,7 @@
 #define JOBINTERFACE_H
 
 #include <QSharedPointer>
+#include <QVariant>
 
 #include "threadweaver_export.h"
 #include "jobpointer.h"
@@ -59,16 +60,33 @@ public:
         Status_NumberOfStatuses,
     };
 
+    enum StatusPropertyRole {
+        StatusProperty_NoProperty = 0,
+        StatusProperty_Name,
+        StatusProperty_Description,
+        StatusProperty_ProgressValue,
+        StatusProperty_ProgressTotal,
+        StatusProperty_ProgressWeight,
+        StatusProperty_User = 1000
+    };
+
     virtual ~JobInterface() {}
     virtual void execute(const JobPointer& job, Thread *) = 0;
     virtual void blockingExecute() = 0;
-    virtual Executor *setExecutor(Executor *executor) = 0;
-    virtual Executor *executor() const = 0;
+    virtual void requestAbort() = 0;
+
     virtual int priority() const = 0;
     virtual Status status() const = 0;
     virtual void setStatus(Status) = 0;
+
+    //method to communicate job status:
+    virtual void setStatusProperty(int role, const QVariant& value) = 0;
+    virtual void setName(const QString& name) = 0;
+    virtual void setDescription(const QString& description) = 0;
+    virtual void setProgress(int progress, int total, int weight = 0) = 0;
+    virtual QVariant statusProperty(int role) = 0;
+
     virtual bool success() const = 0;
-    virtual void requestAbort() = 0;
     virtual void aboutToBeQueued(QueueAPI *api) = 0;
     virtual void aboutToBeQueued_locked(QueueAPI *api) = 0;
     virtual void aboutToBeDequeued(QueueAPI *api) = 0;
@@ -78,10 +96,14 @@ public:
     virtual void removeQueuePolicy(QueuePolicy *) = 0;
     virtual QList<QueuePolicy *> queuePolicies() const = 0;
     virtual void run(JobPointer self, Thread *thread) = 0;
+
+    virtual QMutex *mutex() const = 0;
+
     friend class Executor;
+    virtual Executor *setExecutor(Executor *executor) = 0;
+    virtual Executor *executor() const = 0;
     virtual void defaultBegin(const JobPointer& job, Thread *thread) = 0;
     virtual void defaultEnd(const JobPointer& job, Thread *thread) = 0;
-    virtual QMutex *mutex() const = 0;
 };
 
 }

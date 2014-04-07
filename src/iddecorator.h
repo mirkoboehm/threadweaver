@@ -85,6 +85,12 @@ public:
     void removeQueuePolicy(QueuePolicy *) Q_DECL_OVERRIDE;
     QList<QueuePolicy *> queuePolicies() const Q_DECL_OVERRIDE;
 
+    void setStatusProperty(int role, const QVariant& value) Q_DECL_OVERRIDE;
+    void setName(const QString& name) Q_DECL_OVERRIDE;
+    void setDescription(const QString& description) Q_DECL_OVERRIDE;
+    void setProgress(int progress, int total, int weight = 1) Q_DECL_OVERRIDE;
+    QVariant statusProperty(int role) Q_DECL_OVERRIDE;
+
 protected:
     void run(JobPointer self, Thread *thread) Q_DECL_OVERRIDE;
     void defaultBegin(const JobPointer& job, Thread *thread) Q_DECL_OVERRIDE;

@@ -183,6 +183,12 @@ public:
     /** @brief Return the queue policies assigned to this Job. */
     QList<QueuePolicy *> queuePolicies() const;
 
+    void setStatusProperty(int role, const QVariant& value) Q_DECL_OVERRIDE;
+    void setName(const QString& name) Q_DECL_OVERRIDE;
+    void setDescription(const QString& description) Q_DECL_OVERRIDE;
+    void setProgress(int progress, int total, int weight = 1) Q_DECL_OVERRIDE;
+    QVariant statusProperty(int role) Q_DECL_OVERRIDE;
+
     /** The mutex used to protect this job. */
     QMutex *mutex() const Q_DECL_OVERRIDE;
 
