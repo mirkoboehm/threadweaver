@@ -5,9 +5,10 @@ kde_enable_exceptions()
 
 include(ECMMarkAsTest)
 
+set(TestHelper_SRCS AppendCharacterAndVerifyJob.cpp WaitForIdleAndFinished.cpp JobLoggingWeaver.cpp JobLoggingDecorator.cpp)
 ########### next target ###############
 
-set(JobTests_SRCS JobTests.cpp AppendCharacterAndVerifyJob.cpp WaitForIdleAndFinished.cpp JobLoggingWeaver.cpp JobLoggingDecorator.cpp)
+set(JobTests_SRCS JobTests.cpp ${TestHelper_SRCS})
 
 add_executable(ThreadWeaverJobTests ${JobTests_SRCS})
 add_test(ThreadWeaverJobTests ThreadWeaverJobTests)

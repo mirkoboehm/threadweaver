@@ -38,4 +38,4 @@ void SequencesTests::RecursiveStopTest()
     QCOMPARE(result, QString::fromLatin1("abc"));
 }
 
-QTEST_MAIN(SequencesTests);
+QTEST_MAIN(SequencesTests)
